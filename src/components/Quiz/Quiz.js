@@ -9,27 +9,26 @@ class Quiz extends Component {
     }
   }
 
-
   componentWillMount(){
       axios
         .get('http://localhost:3001/quizzes/')
         .then(res => this.setState({ quiz: res.data.quizzes[0].questions }))
   }
 
+  displayQuestions() {
+    return this.state.quiz.map((q) => {
+      return (
+        <div>{q.title}</div>
+      )
+    })
+  }
+
   render(){
-    console.log(this.state.quiz[0])
-    const displayQuestions = () => {
-      this.state.quiz.map((q, i) => {
-        return (
-          <div>{q[i].title}</div>
-        )
-      })
-    }
     return(
-    <div>
-      <div>testing</div>
-      {this.state.quiz ? this.displayQuestions() : <h3>No quiz</h3>}
-    </div>
+      <div>
+        <div>Quiz Page</div>
+        {this.displayQuestions()}
+      </div>
     )
   }
 }
