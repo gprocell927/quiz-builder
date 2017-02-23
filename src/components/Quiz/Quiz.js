@@ -1,12 +1,17 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import Question from '../Question/Question'
+import Answers from '../Answers/Answers'
 
 class Quiz extends Component {
   constructor(){
     super()
     this.state = {
-      quiz: []
+      quiz: [],
+      score: 0
     }
+
+    this.increaseScore = this.increaseScore.bind(this);
   }
 
   componentWillMount(){
@@ -23,11 +28,47 @@ class Quiz extends Component {
     })
   }
 
+  displayAnswers(){
+    return this.state.quiz.map((a) => {
+      return a.answers.map((answer) => {
+        return (
+        <div>{answer.title}</div>
+      )
+    })
+  })
+}
+
+increaseScore() {
+  const score = this.state.score + 1
+  this.setState({
+    score: score
+  })
+}
+
   render(){
+    const questions = this.state.quiz.map((question) => {
+      return (
+        <Question
+            key={ question.id }
+            title={ question.title }
+            answers={ question.answers }
+            increaseScore={ this.increaseScore }
+        />
+      )
+    })
+
     return(
       <div>
         <div>Quiz Page</div>
-        {this.displayQuestions()}
+        { questions }
+        {/* <Question
+          quiz={this.state.quiz}
+          questions={this.displayQuestions()}
+        />
+        <Answers
+          quiz={this.state.quiz}
+          answers={this.displayAnswers()}
+        /> */}
       </div>
     )
   }
