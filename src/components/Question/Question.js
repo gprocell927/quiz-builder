@@ -7,16 +7,18 @@ class Question extends Component{
     console.log(this.props);
     const answers = this.props.answers.map((answer,i) => {
       return (
-        <p
+        <div>
+        <button onClick={ this.props.increaseScore } />
+        <span
           key={i}
           onSelect={ this.selectAnswer }
-        >{ answer.title }</p>
+        >{ answer.title }</span>
+        </div>
       )
     })
 
     return(
       <div>
-        <button onClick={ this.props.increaseScore } />
         { this.props.title }
         { answers }
       </div>
