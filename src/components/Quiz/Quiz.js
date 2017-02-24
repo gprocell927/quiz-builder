@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import Question from '../Question/Question'
-import Answers from '../Answers/Answers'
 
 class Quiz extends Component {
   constructor(){
@@ -30,15 +29,17 @@ class Quiz extends Component {
 
   displayAnswers(){
     return this.state.quiz.map((a) => {
-      return a.answers.map((answer) => {
+      return a.answers.map((answer, i) => {
         return (
-        <div>{answer.title}</div>
+        <div key={i}>{answer.title}</div>
       )
     })
   })
 }
 
 increaseScore() {
+  // const answerScores = this.state.answers.map((s) => s.score)
+  console.log('this: ',this.state.quiz.map(ans => ans.answers.map(scores => scores.score)));//this logs scores for each choice
   const score = this.state.score + 1
   this.setState({
     score: score
