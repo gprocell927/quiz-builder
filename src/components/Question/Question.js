@@ -4,7 +4,7 @@ class Answer extends Component {
     const { increaseScore, score, title } = this.props
     return (
       <div>
-      <button onClick={ () => increaseScore(score) } />
+      <input type="radio" onClick={ () => increaseScore(score) } />
       <span>{ title }</span>
       </div>
     )
