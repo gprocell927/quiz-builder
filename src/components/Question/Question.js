@@ -1,5 +1,15 @@
 import React, { Component } from 'react'
-
+class Answer extends Component {
+  render(){
+    const { increaseScore, score, title } = this.props
+    return (
+      <div>
+      <button onClick={ () => increaseScore(score) } />
+      <span>{ title }</span>
+      </div>
+    )
+  }
+}
 class Question extends Component{
   selectAnswer(){
 
@@ -7,22 +17,14 @@ class Question extends Component{
   // Create 'slectAnswer' method that changes questions state
   render(){
     console.log(this.props);
-    const answers = this.props.answers.map((answer,i) => {
-      return (
-        <div key={i}>
-        <button onClick={ this.props.increaseScore } />
-        <span
-          key={i}
-          onSelect={ this.selectAnswer }
-        >{ answer.title }</span>
-        </div>
-      )
-    })
+    const { answers, increaseScore } = this.props;
 
     return(
       <div>
-        { this.props.title }
-        { answers }
+        <div>{ this.props.title }</div>
+        <div>
+          { answers.map((answer,i) => <Answer key={i} {...answer} increaseScore={increaseScore} />) }
+        </div>
       </div>
     )
   }
