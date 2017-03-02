@@ -7,28 +7,14 @@ class Quiz extends Component {
   constructor(){
     super()
     this.state = {
-      quiz: [],
-      score: 0
+      quiz: []
     }
-
-    this.increaseScore = this.increaseScore.bind(this);
   }
 
   componentWillMount(){
     axios
       .get('http://localhost:3001/quizzes/')
       .then(res => this.setState({ quiz: res.data.quizzes[0].questions }))
-  }
-
-  increaseScore(value) {
-    this.setState({
-      score: value + this.state.score
-    })
-    axios
-      .post('http://localhost:3001/scores',{
-        score: this.state.score
-      })
-      .then(res => console.log(res.data.score))
   }
 
   render(){
@@ -41,7 +27,6 @@ class Quiz extends Component {
             <Question
               key={i}
               { ...question }
-              increaseScore={ this.increaseScore }
             />
           )
         ) }

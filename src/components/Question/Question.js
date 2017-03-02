@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
+
 class Answer extends Component {
   render(){
-    const { increaseScore, score, title } = this.props
+    const { title } = this.props
     return (
       <div>
-        <input type="radio" name={title} onClick={ () => increaseScore(score) } />
+        <input type="radio" name={title}  />
         <span>{ title }</span>
       </div>
     )
@@ -12,13 +13,13 @@ class Answer extends Component {
 }
 class Question extends Component{
   render(){
-    const { answers, increaseScore } = this.props;
+    const { answers } = this.props;
 
     return(
       <div className="question-answer">
         <div>{ this.props.title }</div>
         <div>
-          { answers.map((answer,i) => <Answer key={i} {...answer} increaseScore={increaseScore} />) }
+          { answers.map((answer,i) => <Answer key={i} {...answer} />) }
         </div>
       </div>
     )
