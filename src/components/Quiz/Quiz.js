@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import Question from '../Question/Question'
+import Header from '../Header/Header'
 
 class Quiz extends Component {
   constructor(){
@@ -30,7 +31,7 @@ class Quiz extends Component {
 
     return(
       <div>
-        <div>Quiz Page</div>
+        <Header />
         { questions.map((question, i) => (
             <Question
               key={i}

@@ -20,7 +20,7 @@ class Question extends Component{
     const { answers, increaseScore } = this.props;
 
     return(
-      <div>
+      <div className="question-answer">
         <div>{ this.props.title }</div>
         <div>
           { answers.map((answer,i) => <Answer key={i} {...answer} increaseScore={increaseScore} />) }
