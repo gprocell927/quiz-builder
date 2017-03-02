@@ -4,19 +4,14 @@ class Answer extends Component {
     const { increaseScore, score, title } = this.props
     return (
       <div>
-      <input type="radio" onClick={ () => increaseScore(score) } />
-      <span>{ title }</span>
+        <input type="radio" name={title} onClick={ () => increaseScore(score) } />
+        <span>{ title }</span>
       </div>
     )
   }
 }
 class Question extends Component{
-  selectAnswer(){
-
-  }
-  // Create 'slectAnswer' method that changes questions state
   render(){
-    console.log(this.props);
     const { answers, increaseScore } = this.props;
 
     return(

@@ -24,6 +24,11 @@ class Quiz extends Component {
     this.setState({
       score: value + this.state.score
     })
+    axios
+      .post('http://localhost:3001/scores',{
+        score: this.state.score
+      })
+      .then(res => console.log(res.data.score))
   }
 
   render(){
